@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Non-Typical Strength</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="OGfavicon-32x32.png" type="image/x-icon"
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Your Logo" />
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="membership.html">Membership</a>
+            <a href="programs.html">Programs</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <section id="about" class="about-section">
+
+        <!-- Left side: About text -->
+        <div class="about-text">
+            <h2>About Non-Typical Strength</h2>
+            <br />
+            <p>
+                Non-Typical Strength was founded with one mission: to create a space where lifters of all levels
+                can push past limitations. Unlike big-box gyms, we specialize in equipment built for serious
+                strength training — bars, racks, and machines designed to handle more weight and intensity.
+            </p>
+            <br />
+            <p>
+                Our founder, Edward Layton, is not only a <strong>national-record-holding powerlifter</strong> and holds multiple <strong>Oklahoma state records</strong>,
+                but is also a <strong>registered nurse</strong>. That unique background combines unmatched experience on the platform
+                with medical expertise, giving our members the tools to train hard while staying safe.
+            </p>
+            <br />
+            <p>
+                With years of experience in competitive lifting, Edward brings both passion and
+                knowledge to every member’s journey. Whether your goal is to <em>lift heavier</em>, <em>build muscle</em>,
+                or simply become a healthier version of yourself, our team is here to support you every step of the way.
+            </p>
+        </div>
+
+        <!-- Right side: Slideshow -->
+        <div class="about-slideshow">
+            <div class="slideshow-container">
+                <div class="slide fade">
+                    <img src="coach.jpeg" alt="Coaching a lift">
+                </div>
+                <div class="slide fade">
+                    <img src="deadlift.jpg" alt="Heavy lift">
+                </div>
+                <div class="slide fade">
+                    <img src="squat.jpeg" alt="Squat with 3 white lights">
+                </div>
+                <div class="slide fade">
+                    <img src="pre-squat.jpg" alt="Pre-squat focus">
+                </div>
+
+                <!-- Navigation arrows -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Facility amenities spanning full width -->
+    <section class="facility-amenities">
+        <h2>Our facility includes:</h2>
+        <ul>
+            <li>2 powerlifting combo racks</li>
+            <li>2 deadlift platforms</li>
+            <li>Pendulum squat</li>
+            <li>Large Rogue power rack with safeties</li>
+            <li>Curved self-propelled treadmill</li>
+            <li>300sqft turf space for dragging sleds, farmer carries, lunges, or other cardio work</li>
+            <li>Dumbbells ranging in weight from 5-150lbs</li>
+            <li>Bathroom and shower</li>
+            <li>24/7 access to members</li>
+            <li>Locked facility with private parking lot</li>
+        </ul>
+    </section>
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function showSlides(n) {
+            let slides = document.getElementsByClassName("slide");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex - 1].style.display = "block";
+        }
+    </script>
+
+    <style>
+        /* About section layout */
+        .about-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-slideshow {
+            flex: 1;
+            min-width: 300px;
+            margin-top: 45px;
+        }
+
+        /* Facility amenities full-width and left-aligned */
+        .facility-amenities {
+            max-width: 800px; /* optional: keeps text readable */
+            margin: 40px auto; /* centers section */
+        }
+
+            .facility-amenities ul {
+                text-align: left; /* ensures bullet points align left */
+                padding-left: 20px; /* optional: standard spacing for bullets */
+            }
+
+        /* Slideshow styles */
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+        }
+
+        .slide {
+            display: none;
+        }
+
+            .slide img {
+                width: 100%;
+                border-radius: 8px;
+            }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            padding: 12px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            user-select: none;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .next {
+            right: 0;
+        }
+    </style>
+
+
+    <footer>
+        <p>
+            Follow us:
+            <a href="https://www.facebook.com/share/1JUjTeWq2U/?mibextid=wwXIfr" target="_blank">Gym's Facebook</a> |
+            <a href="https://www.instagram.com/edwardlayton14/?igsh=MWd5eHhnOHZkb3A2ag%3D%3D#" target="_blank">Founder's Instagram</a>
+        </p>
+        <p>&copy; 2025 Non-Typical Strength, LLC</p>
+    </footer>
+</body>
+</html>

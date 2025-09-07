@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Non-Typical Strength</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="OGfavicon-32x32.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Non-Typical Strength Logo" />
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="membership.html">Membership</a>
+            <a href="programs.html">Programs</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <section id="contact-page">
+        <div class="contact-container">
+            <!-- Left Column: Contact Form -->
+            <div class="contact-left">
+                <h2>Contact Us</h2>
+                <p>Reach out with any questions!</p>
+                <form id="contact-form">
+                    <label for="name">Name*</label>
+                    <input type="text" id="name" name="name" required>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Optional if phone is provided">
+
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Optional if email is provided">
+
+                    <label for="program">Workout Program</label>
+                    <select id="program" name="program">
+                        <option value="">--Select a Program--</option>
+                        <option value="home-bodyweight">At Home Bodyweight Workout</option>
+                        <option value="generalized-fitness">Generalized Fitness</option>
+                        <option value="50plus-fitness">50+ Generalized Fitness</option>
+                        <option value="glute-builder">Glute Builder</option>
+                        <option value="bodybuilding">Bodybuilding</option>
+                        <option value="basic-powerlifting">Basic Powerlifting</option>
+                    </select>
+
+                    <label for="contact-method">Preferred Contact Method</label>
+                    <select id="contact-method" name="contact-method">
+                        <option value="">--Select Method--</option>
+                        <option value="call">Call</option>
+                        <option value="email">Email</option>
+                        <option value="text">Text</option>
+                    </select>
+
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Write your message here..."></textarea>
+
+                    <button type="submit">Send</button>
+                </form>
+                <p id="success-message" style="display:none; color:green; margin-top:15px;">
+                    Thanks for contacting us! We will be in touch soon.
+                </p>
+            </div>
+
+            <!-- Right Column: Map & Address -->
+            <div class="contact-right">
+                <h3>Our Location</h3>
+                <p>Non-Typical Strength<br>601 S Main St.<br>Fairview, OK 73737</p>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3217.017807913355!2d-98.47959689999999!3d36.2633466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87ae558199a4419b%3A0xea71ddada0832211!2s601%20S%20Main%20St%2C%20Fairview%2C%20OK%2073737!5e0!3m2!1sen!2sus!4v1756865083195!5m2!1sen!2sus"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>
+            Follow us:
+            <a href="https://www.facebook.com/share/1JUjTeWq2U/?mibextid=wwXIfr" target="_blank">Gym's Facebook</a> |
+            <a href="https://www.instagram.com/edwardlayton14/?igsh=MWd5eHhnOHZkb3A2ag%3D%3D#" target="_blank">Founder's Instagram</a>
+        </p>
+        <p>&copy; 2025 Non-Typical Strength, LLC</p>
+    </footer>
+
+    <script>
+        const scriptURL = "https://script.google.com/macros/s/AKfycbxw9Cn6VZJqV1cU62MtIJmQdfiqbIvDKI7bG7pJFooM-ona3bZnzisDM-vWG5l0fsULVA/exec";
+        const form = document.getElementById("contact-form");
+
+        form.addEventListener("submit", e => {
+            e.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const program = document.getElementById("program").value;
+            const contactMethod = document.getElementById("contact-method").value;
+            const message = document.getElementById("message").value.trim();
+
+            // Name is always required
+            if (!name) {
+                alert("Please enter your name.");
+                return;
+            }
+
+            // Conditional requirement based on preferred contact method
+            if (contactMethod === "email" && !email) {
+                alert("You selected Email as your preferred contact method - please provide your email address.");
+                return;
+            }
+            if ((contactMethod === "call" || contactMethod === "text") && !phone) {
+                alert("You selected Call or Text as your preferred contact method - please provide your phone number.");
+                return;
+            }
+            if (!contactMethod && !email && !phone) {
+                alert("Please enter at least an email or phone number.");
+                return;
+            }
+
+            // Send data to Google Apps Script
+            fetch(scriptURL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name, email, phone, program, contactMethod, message })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        form.reset();
+                        document.getElementById("success-message").style.display = "block";
+                    } else {
+                        alert("Error submitting form. Please try again.");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error!", error);
+                    alert("Error submitting form. Please try again.");
+                });
+        });
+    </script>
+</body>
+</html>
